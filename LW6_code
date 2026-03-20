@@ -1,0 +1,32 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main()
+{
+    int natNum;
+    cout << "Enter a natural number: ";
+    cin >> natNum;
+    if (natNum > 0 && natNum < 10) {
+        cout << natNum << ". The entered number only has one digit so it doesn't need to be modified.";
+    }
+    else if (natNum <= 0) {
+        cout << "Error! This program only accepts natural numbers but the entered number isn't one.";
+    }
+    else {
+        int firstDigit;
+        int lastDigit;
+        int con_expr = natNum;
+        int digits = 0;
+        int modNum;
+        while (natNum != 0) {
+            lastDigit = natNum % 10;
+            con_expr += (lastDigit * pow(10, digits));
+            natNum /= 10;
+            digits++;
+        }
+        firstDigit = con_expr / pow(10, (digits - 1));
+        lastDigit = con_expr % 10;
+        modNum = con_expr + firstDigit * (1 - pow(10, (digits - 1))) + lastDigit * (pow(10, (digits - 1)) - 1);
+        cout << "The modified number is " << modNum;
+    }
+}
